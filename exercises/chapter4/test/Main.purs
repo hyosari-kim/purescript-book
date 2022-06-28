@@ -18,7 +18,6 @@ main :: Effect Unit
 main =
   runTest do
     runChapterExamples
-    {-  Move this block comment starting point to enable more tests
     suite "Exercise Group - Recursion" do
       suite "Exercise - isEven" do
         test "0 is even" do
@@ -78,6 +77,7 @@ main =
         test "keepNonNegativeRewrite " do
           Assert.equal [ 0.0, 2.0, 3.0 ]
             $ keepNonNegativeRewrite [ -1.5, -1.0, 0.0, -0.1, 2.0, 3.0, -4.0 ]
+    {-  Move this block comment starting point to enable more tests
     suite "Exercise Group - Flattening, Comprehensions, Do Notation, and Guards" do
       test "Exercise - isPrime" do
         assertFalse "0 is not prime"
@@ -201,6 +201,7 @@ main =
         testls "works for an empty directory" [] emptyDir
 
 -}
+
 runChapterExamples :: TestSuite
 runChapterExamples =
   suite "Chapter Examples" do
@@ -244,7 +245,6 @@ runChapterExamples =
       Assert.equal allFileAndDirectoryNames
         $ filename
         <$> allFiles' root
-
 allFileAndDirectoryNames :: Array (String)
 allFileAndDirectoryNames =
   [ "/"
