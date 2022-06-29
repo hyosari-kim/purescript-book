@@ -113,21 +113,25 @@ WIP
 ```PureScript
 import Data.Array 
 import Data.List 
+
+-- 다음과 같이 as 를 사용하면 전역으로 import하지 않고 지정된 이름공간으로 import합니다. 
+
+import Data.Array as A A.length [1,2,3]
 ```
 - 함수 합성 하기
 ```PureScript
 {-
 	Error 가 나는 이유? 
-
-	Could not match type  
-  
-	Maybe  
-	  
-	with type  
-	  
-	t0 t1
 -}
 (Maybe.map isEven $ (head arr)) >>> fromMaybe false 
+
+-- (Maybe.map isEven $ (head arr)) 의 결과는 Maybe Boolean 입니다. 
+-- fromMaybe false 는 Maybe Boolean -> Boolean 입니다. -- >>> 는 '함수 합성' 연산자 이기 때문에 ReScript의 파이프와는 차이가 있습니다. 
+-- #은 PureScript에서 ReScript의 파이프와 동일한 역할을 하는 연산자 입니다. -- 따라서 >>>를 #으로 바꾸면 에러가 발생하지 않습니다. 
+-- >>>의 타입은 (a -> b) -> (b -> c) -> (a -> c) 이고 
+-- #(또는 ReScript의 파이프)의 타입은 a -> (a -> b) -> b 입니다. 
+-- 또는 이렇게 쓸 수도 있습니다. head arr # map isEven >>> fromMaybe false
+
 ```
 - Infix operator precedence 와 assosiativity 는 repl 에서 어떻게 확인할 수 있나요?
 
